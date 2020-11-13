@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warnaBagrond"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="251dp"
+        android:background="@drawable/bg_profil">
+
+    </ImageView>
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/ic_bg_radius16">
+
+        <TextView
+            android:id="@+id/tvnama_profil_pemilik"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_20dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:layout_marginTop="95dp">
+        </TextView>
+        <TextView
+            android:id="@+id/tvemail_profil_pemilik"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_20dp"
+            android:textAlignment="center"
+            android:textAllCaps="false">
+        </TextView>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="115dp"
+        android:background="@drawable/logo_padi_fix"
+        android:layout_marginTop="-240dp">
+
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="110dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="@dimen/size_20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/ic_email">
+        </ImageView>
+        <TextView
+            android:id="@+id/tvemail_profil_pemilik_bawah"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="35dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="@dimen/size_40dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/ic_phone">
+        </ImageView>
+        <TextView
+            android:id="@+id/tvnotelfon_profil_pemilik_bawah"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:layout_marginLeft="35dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="@dimen/size_20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/ic_lokasi">
+        </ImageView>
+        <TextView
+            android:id="@+id/tvalamat_profil_pemilik_bawah"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="35dp"/>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_keluar_profilPemilik"
+        android:layout_width="300dp"
+        android:layout_height="46dp"
+        android:text="KELUAr"
+        android:textSize="@dimen/size_20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/ic_pesan">
+
+    </Button>
+</LinearLayout>

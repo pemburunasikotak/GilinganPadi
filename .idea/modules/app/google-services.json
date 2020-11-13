@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "437009375783",
+    "firebase_url": "https://mygilingan.firebaseio.com",
+    "project_id": "mygilingan",
+    "storage_bucket": "mygilingan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437009375783:android:88a5d8874871c3dcf9a402",
+        "android_client_info": {
+          "package_name": "com.example.mygilingan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437009375783-j94genojdlq0kobnnb34gc22bgegp10g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mygilingan",
+            "certificate_hash": "c5ee83b49a62b138ef149a66a802825f32ad7ab6"
+          }
+        },
+        {
+          "client_id": "437009375783-q5jk3v34v5nurk7mgokel32dglf8rn4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk931hyWZvLkVBfmQ9CXo01RMm9pFpTNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437009375783-q5jk3v34v5nurk7mgokel32dglf8rn4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

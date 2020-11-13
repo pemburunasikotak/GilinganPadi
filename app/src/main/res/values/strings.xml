@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GilinganPadi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="map_box_access_token">pk.eyJ1IjoidGowMSIsImEiOiJja2hnMXEwYmUwbmd4MnJsdTAweDJ3OG0zIn0.clBV1F_qX9ZDD_sZF2H1LQ</string>
+    <string name="permissions_denied">Gagal</string>
+    <string name="info">Info</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="change_style_maps">Title</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warnaBagrond">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/logolingkaran"
+        android:layout_marginTop="88dp">
+    </ImageView>
+
+    <Button
+        android:id="@+id/btn_masuk_pemilik_login_pilih"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/ic_masuk_pemilik">
+    </Button>
+    <Button
+        android:id="@+id/btn_masuk_pemesan_login_pilih"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_masuk_pemesan">
+
+    </Button>
+
+</LinearLayout>
