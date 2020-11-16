@@ -1,11 +1,13 @@
 package com.example.mygilingan.pemesan
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mygilingan.R
+import com.example.mygilingan.TestMaps
 import com.example.mygilingan.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +29,7 @@ class Home_pemesan : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gantiNama()
+
     }
     //Fungsi untuk ganti nama Home
     private fun gantiNama() {
@@ -49,14 +52,9 @@ class Home_pemesan : Fragment() {
                     tv_nama_home_pemesan.text = user!!.nama
                 }
             })
+
     }
 
     companion object {
-        fun newInstance():Home_pemesan{
-            val fragment = Home_pemesan()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

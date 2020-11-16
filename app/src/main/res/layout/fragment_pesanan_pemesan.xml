@@ -12,6 +12,13 @@
         android:layout_height="350dp"
         android:orientation="horizontal">
 
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map_view"
+            app:mapbox_cameraZoom="12"
+            />
+
 
     </LinearLayout>
 
@@ -28,7 +35,7 @@
             android:layout_height="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_20dp"
             android:fontFamily="sans-serif-medium"
-            android:text="MASUKKAN DATA PESAN"
+            android:text="@string/masukkan_data_pesan"
             android:textAlignment="center"
             android:textStyle="bold">
 
@@ -46,11 +53,12 @@
                 android:id="@+id/et_ldp_inputlokasi"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_40dp"
-                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginStart="@dimen/size_20dp"
                 android:background="@null"
-                android:hint="lokasi"
+                android:hint="@string/lokasi"
                 android:textColor="@android:color/black"
-                android:textColorHint="@android:color/holo_blue_light"></EditText>
+                android:textColorHint="@android:color/holo_blue_light"
+                android:autofillHints=""/>
         </LinearLayout>
 
         <LinearLayout
@@ -65,11 +73,12 @@
                 android:id="@+id/et_ldp_jumlah"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_40dp"
-                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginStart="@dimen/size_20dp"
                 android:background="@null"
-                android:hint="Masukkan Jumlah"
+                android:hint="@string/masukkan_jumlah"
                 android:textColor="@android:color/black"
-                android:textColorHint="@android:color/holo_blue_light"></EditText>
+                android:textColorHint="@android:color/holo_blue_light"
+                android:autofillHints="1" />
         </LinearLayout>
 
 
@@ -102,7 +111,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="@dimen/size_17dp"
             android:background="@null"
-            android:text="ESTIMASI BIYAYA"
+            android:text="@string/estimasi_biyaya"
             android:textAlignment="center">
 
         </Button>
@@ -111,7 +120,7 @@
             android:id="@+id/tvbiyayapesananPemilik"
             android:layout_width="170dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="115dp"
+            android:layout_marginStart="115dp"
             android:layout_marginTop="@dimen/size_15dp"
             android:background="@drawable/ic_form"
             android:textAlignment="center" />
@@ -125,7 +134,7 @@
         android:text="PESAN"
         android:textSize="@dimen/size_20dp"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="60dp"
         android:background="@drawable/ic_pesan">
 

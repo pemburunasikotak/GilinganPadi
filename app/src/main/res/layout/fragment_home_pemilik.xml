@@ -26,29 +26,5 @@
         android:layout_marginTop="10dp"
         android:textAlignment="center"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_menu_home_pesan1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="45dp"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_menu_home_pesan2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-
 
 </LinearLayout>

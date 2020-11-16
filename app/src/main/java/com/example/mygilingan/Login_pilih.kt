@@ -2,7 +2,6 @@ package com.example.mygilingan
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity

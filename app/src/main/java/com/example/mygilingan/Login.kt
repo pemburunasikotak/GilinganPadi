@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.layout_login.*
 
 
+@Suppress("DEPRECATION")
 class Login : AppCompatActivity(){
     lateinit var btnlogin : Button
     lateinit var btndaftar:Button

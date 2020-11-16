@@ -9,9 +9,11 @@
         android:id="@+id/maps"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:background="@drawable/maps"
         android:orientation="horizontal">
-
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map_view_pemilik" />
     </LinearLayout>
 
     <TextView

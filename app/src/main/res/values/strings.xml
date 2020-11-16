@@ -9,4 +9,8 @@
     <string name="info">Info</string>
     <string name="dismiss">Dismiss</string>
     <string name="change_style_maps">Title</string>
+    <string name="estimasi_biyaya">ESTIMASI BIYAYA</string>
+    <string name="masukkan_jumlah">Masukkan Jumlah</string>
+    <string name="lokasi">lokasi</string>
+    <string name="masukkan_data_pesan">MASUKKAN DATA PESAN</string>
 </resources>
