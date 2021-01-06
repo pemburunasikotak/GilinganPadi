@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.layout_registrasi.*
+import lib.alframeworkx.utils.AlRequest
+import lib.alframeworkx.utils.AlStatic
 
 
 @Suppress("DEPRECATION")
@@ -28,7 +30,6 @@ class Registrasi : AppCompatActivity(){
         this.ref = FirebaseDatabase.getInstance().getReference("USER")
         btn_daftar_layout_registrasi.setOnClickListener {
             fungsiRegistarasi()
-            savedata()
         }
         //fungsi agar dapat fullscreen
         window.setFlags(
@@ -55,14 +56,19 @@ class Registrasi : AppCompatActivity(){
             email = email.split("@")[0];
 
             ref.child(email).setValue(user).addOnCompleteListener {
+                AlStatic.hideLoadingDialog(this@Registrasi)
                 Toast.makeText(this, "Successs",Toast.LENGTH_SHORT).show()
                 edit_text_name_registrasi.setText("")
                 edit_text_email_registrasi.setText("")
                 edit_text_password_registrasi.setText("")
                 this.edit_text_no_telp_registrasi.setText("")
+                startActivity(Intent(this, Login::class.java))
+                finish()
                 //uid
 
             }
+        } else {
+            AlStatic.hideLoadingDialog(this@Registrasi)
         }
     }
 
@@ -90,12 +96,14 @@ class Registrasi : AppCompatActivity(){
             edit_text_password_registrasi.requestFocus()
             return
         }
+
         //masuk ke Firebase Auth
+        AlStatic.showLoadingDialog(this, R.drawable.ic_logo)
         auth.createUserWithEmailAndPassword(
             edit_text_email_registrasi.text.toString(),
             edit_text_password_registrasi.text.toString(),
         )
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener(this@Registrasi) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     user?.sendEmailVerification()
@@ -106,16 +114,16 @@ class Registrasi : AppCompatActivity(){
                                     "Silahkan Cek Email",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                startActivity(Intent(this, Login::class.java))
-                                finish()
+                                savedata()
                             }
                         }
                 } else {
+                    AlStatic.hideLoadingDialog(this@Registrasi)
                     Toast.makeText(
                         baseContext, "Ulang Lagi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    finish()
+//                    finish()
                 }
             }
 

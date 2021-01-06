@@ -23,10 +23,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    configurations {
+        all*.exclude group: 'com.android.volley'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    ndkVersion '21.3.6528147'
 }
 
 dependencies {
@@ -55,6 +61,15 @@ dependencies {
     implementation ('com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0@aar'){
         transitive=true
     }
+
+    //google
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation "com.google.android.libraries.places:places-compat:2.1.0"
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    implementation 'com.github.almuwahhid:alframeworkx:1.1.0'
+    
     //implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.30.0'
 
     //implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0'
@@ -67,9 +82,12 @@ dependencies {
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.8.2'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.30.0'
     implementation ('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.30.0'){
         transitive = true
     }
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
 
 }

@@ -1,35 +1,118 @@
 package com.example.mygilingan.pemesan
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.mygilingan.R
 import kotlinx.android.synthetic.main.activity_home_pemesan.*
 
 class Home_pemesan_utama : AppCompatActivity() {
     private var content: FrameLayout? = null
-    private val home = Home_pemesan()
-    private val pesanan = Pesanan_pemesan()
-    private val profil = Profil_pemesan()
+    private var home : Home_pemesan? = null
+    private var pesanan : Pesanan_pemesan? = null
+    private var profil : Profil_pemesan? = null
+
+    var active_fragment = 0
+    var after_active_fragment = 0
+
+    internal var mFragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_pemesan)
-        replaceFragment(home)
+
+        home = Home_pemesan.newInstance()
+        pesanan = Pesanan_pemesan.newInstance()
+        profil = Profil_pemesan.newInstance()
+
+        initializeNavFragment(home!!)
 
         button_nav_pemesan.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.navigation_home->replaceFragment(home)
-                R.id.navigation_pesanan-> replaceFragment(pesanan)
-                R.id.navigation_profil -> replaceFragment(profil)
+                R.id.navigation_home-> {
+                    initializeNavFragment(home!!)
+                }
+                R.id.navigation_pesanan-> {
+                    initializeNavFragment(pesanan!!)
+                }
+                R.id.navigation_profil -> {
+                    initializeNavFragment(profil!!)
+                }
             }
             true
         }
     }
-    private fun  replaceFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
+
+    //digunakan untuk mengganti Tampilan Fragment
+    private fun initializeNavFragment(curFragment: Fragment) {
+        val transaction: FragmentTransaction = mFragmentManager.beginTransaction()
+        if (mFragmentManager.findFragmentByTag(curFragment.javaClass.getSimpleName()) == null) {
+            transaction.add(
+                R.id.fragment_container,
+                curFragment,
+                curFragment.javaClass.getSimpleName()
+            )
+        }
+        Log.d("hi", ""+home!!.javaClass.getSimpleName())
+        val tagMain: Fragment? = mFragmentManager.findFragmentByTag(home!!.javaClass.getSimpleName())
+        val tagPesanan: Fragment? = mFragmentManager.findFragmentByTag(pesanan!!.javaClass.getSimpleName())
+        val tagProfil: Fragment? = mFragmentManager.findFragmentByTag(profil!!.javaClass.getSimpleName())
+        hideFragment(transaction, tagMain, tagPesanan, tagProfil)
+        showFragment(curFragment, transaction, tagMain, tagPesanan, tagProfil)
+        after_active_fragment = active_fragment
+        transaction.commitAllowingStateLoss()
     }
+
+    private fun showFragment(
+        curFragment: Fragment,
+        transaction: FragmentTransaction,
+        tagMain: Fragment?,
+        tagPesanan: Fragment?,
+        tagProfil: Fragment?
+    ) {
+        if (curFragment.javaClass.getSimpleName()
+                .equals(home?.javaClass?.getSimpleName())
+        ) {
+            if (tagMain != null) {
+                transaction.show(tagMain)
+            }
+        }
+
+        if (curFragment.javaClass.getSimpleName()
+                .equals(pesanan?.javaClass?.getSimpleName())
+        ) {
+            if (tagPesanan != null) {
+                transaction.show(tagPesanan)
+            }
+        }
+
+        if (curFragment.javaClass.getSimpleName()
+                .equals(profil?.javaClass?.getSimpleName())
+        ) {
+            if (tagProfil != null) {
+                transaction.show(tagProfil)
+            }
+        }
+    }
+
+    private fun hideFragment(
+        transaction: FragmentTransaction,
+        tagMain: Fragment?,
+        tagPesanan: Fragment?,
+        tagProfil: Fragment?
+    ) {
+        if (tagMain != null) {
+            transaction.hide(tagMain)
+        }
+        if (tagPesanan != null) {
+            transaction.hide(tagPesanan)
+        }
+        if (tagProfil != null) {
+            transaction.hide(tagProfil)
+        }
+    }
+
 }

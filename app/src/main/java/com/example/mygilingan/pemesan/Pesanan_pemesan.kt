@@ -2,22 +2,24 @@ package com.example.mygilingan.pemesan
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import com.example.mygilingan.R
 import com.example.mygilingan.R.string.map_box_access_token
-import com.example.mygilingan.TestMaps
-import com.example.mygilingan.model.DataPesananPemesan
+import com.example.mygilingan.model.*
+import com.example.mygilingan.utils.App
+import com.example.mygilingan.utils.FragmentLocation
+import com.example.mygilingan.utils.getAddress
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.type.LatLng
+import com.google.gson.Gson
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.DirectionsRoute
@@ -32,15 +34,19 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
 import kotlinx.android.synthetic.main.fragment_pesanan_pemesan.*
-import kotlinx.android.synthetic.main.fragment_pesanan_pemesan.map_view
-import kotlinx.android.synthetic.main.item_pesanan_pemilik.*
-import kotlinx.android.synthetic.main.testmaps.*
+import lib.alframeworkx.utils.AlRequest
+import lib.alframeworkx.utils.AlStatic
+import org.json.JSONObject
+import java.math.BigInteger
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
+class Pesanan_pemesan : FragmentLocation(), OnMapReadyCallback {
     private lateinit var auth: FirebaseAuth
     lateinit var ref : DatabaseReference
-    var harga : Int = 0
+    var harga = BigInteger("3000")
+
 
     lateinit var permissionsManager: PermissionsManager
     lateinit var mapboxMap: MapboxMap
@@ -50,6 +56,8 @@ class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
     private var navigationMapRoute: NavigationMapRoute? = null
     lateinit var originPosition: Point
 
+    lateinit var myloc : LatLng
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,12 +66,12 @@ class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
         val view: View = inflater.inflate(R.layout.fragment_pesanan_pemesan, container, false)
         mapView = view.findViewById<View>(R.id.map_view) as MapView
         mapView.onCreate(savedInstanceState)
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        harga = 3000
         auth = FirebaseAuth.getInstance()
         //save ke realtime database Tabel Pesan
         this.ref = FirebaseDatabase.getInstance().getReference("Pesan")
@@ -71,57 +79,78 @@ class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
         hitungJumlah()
         btn_pesan_lpp.setOnClickListener {
             pesanGilingan()
-            val intent = Intent (getActivity(), TestMaps::class.java)
-            getActivity()?.startActivity(intent)
+            /*val intent = Intent (getActivity(), TestMaps::class.java)
+            getActivity()?.startActivity(intent)*/
         }
 
-        //Mapbox.getInstance(getContext()!!, getString(map_box_access_token))
-        //inisialisasi Permision di MapsBox
         initMapView(savedInstanceState)
         initPermissions()
     }
 
     private fun pesanGilingan() {
-        var loglat :LatLng
-    //   originPosition = Point.fromLngLat(loglat.longitude,loglat.longitude)
-        //inisialisasi
         val id = ref.push().key.toString()
         val lokasi = et_ldp_inputlokasi.text.toString().trim()
         val jumlah = et_ldp_jumlah.text.toString().trim()
         val estimasi = tvbiyayapesananPemilik.text.toString().trim()
-        val pesan = DataPesananPemesan(id, lokasi, jumlah, estimasi)
-        ref.child(id).setValue(pesan)
+        val pemesan = Gson().fromJson(AlStatic.getSPString(context, App.instance.USER_KEY), Pemesan::class.java)
+        pemesan.alamat = lokasi
+        pemesan.lat = myloc.latitude
+        pemesan.lng = myloc.longitude
+        val pesanan = DataPesananPemesan(id, pemesan, jumlah, estimasi)
+        ref.child(id).setValue(pesanan, { error, ref ->
+            if(error == null){
+                AlRequest.POSTRaw("https://fcm.googleapis.com/fcm/send", context, object : AlRequest.OnPostRawRequest{
+                    override fun onSuccess(response: JSONObject?) {
+                        AlStatic.hideLoadingDialog(context)
+                        Log.d("success", "Hi Success "+response)
+                        AlStatic.ToastShort(context, "Berhasil request pesanan")
+                        et_ldp_jumlah.setText("")
+                        tvbiyayapesananPemilik.setText("0")
+                    }
+
+                    override fun onFailure(error: String?) {
+                        AlStatic.hideLoadingDialog(context)
+                        AlStatic.ToastShort(context, error)
+                        Log.d("error", "Hi Error "+error)
+                    }
+
+                    override fun onPreExecuted() {
+                        AlStatic.showLoadingDialog(context, R.drawable.ic_logo)
+                    }
+
+                    override fun requestParam(): String {
+                        var notifPesanan = NotifPesanan("Pesanan Baru", "Ada pesanan baru sejumlah "+jumlah+" dengan estimasi biaya "+estimasi+" .Buka Gilinganpadi sekarang", pesanan)
+                        Log.d("data", Gson().toJson(FcmData("/topics/"+App.instance.FIREBASEPUSH_KEY, notifPesanan)))
+                        return Gson().toJson(FcmData("/topics/"+App.instance.FIREBASEPUSH_KEY, notifPesanan))
+                    }
+
+                    override fun requestHeaders(): MutableMap<String, String> {
+                        val params: MutableMap<String, String> = HashMap()
+                        params.put("Content-Type", "application/json")
+                        params.put("Authorization", "key="+getString(R.string.firebase_key))
+                        return params
+                    }
+
+                })
+            }
+        })
     }
 
 
     private fun hitungJumlah() {
-      //  et_ldp_jumlah.addTextChangedListener(textWatcher)
-
         btnEstimasi.setOnClickListener {
             if (et_ldp_jumlah.text.toString().isEmpty()){
                 et_ldp_jumlah.setError("harus di isi")
             }else{
-                val jml = et_ldp_jumlah.text.toString().toDouble()
-                val jumlah = this.kali(jml)
-                tvbiyayapesananPemilik.setText(jumlah.toString())
+                val jml = et_ldp_jumlah.text.toString()
+                tvbiyayapesananPemilik.setText(kali(jml).toString())
             }
         }
     }
 
-//    private val textWatcher = object : TextWatcher {
-//        override fun afterTextChanged(s: Editable?) {
-//            tvbiyayapesananPemilik.setText(kali(et_ldp_jumlah.text.toString().toDouble()))
-//        }
-//        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//        }
-//        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//
-//        }
-//    }
-
     //hitung Jummlah
-    private fun kali(jml: Double): Any {
-        return jml* harga
+    private fun kali(jml: String): BigInteger {
+        return jml.toBigInteger() * harga
     }
 
     companion object {
@@ -207,7 +236,16 @@ class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
         this.mapboxMap.setStyle(Style.MAPBOX_STREETS){
             showingDeviceLocation(mapboxMap)
         }
+
+        requestMyLocation()
     }
+
+    override fun onMyLocation(latlng: LatLng) {
+        super.onMyLocation(latlng)
+        myloc = latlng
+        et_ldp_inputlokasi.setText(getAddress(latlng))
+    }
+
     private fun initMapView(savedInstanceState: Bundle?) {
         map_view.onCreate(savedInstanceState)
     }
@@ -252,7 +290,6 @@ class Pesanan_pemesan : Fragment(), OnMapReadyCallback {
         locationComponent.cameraMode = CameraMode.TRACKING
         locationComponent.renderMode = RenderMode.COMPASS
     }
-
 
 }
 

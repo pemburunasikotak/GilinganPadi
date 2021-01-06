@@ -2,7 +2,7 @@ package com.example.mygilingan.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-data class Users(
+open class Users(
     @SerializedName("nama")
     @Expose
     var nama:String ="",
