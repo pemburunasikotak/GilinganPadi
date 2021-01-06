@@ -5,11 +5,12 @@
 
 
     <string name="map_box_access_token">pk.eyJ1IjoidGowMSIsImEiOiJja2hnMXEwYmUwbmd4MnJsdTAweDJ3OG0zIn0.clBV1F_qX9ZDD_sZF2H1LQ</string>
+    <string name="firebase_key">AAAAZb_J4ic:APA91bGa-yhoH5Y3feuCbQxnVOMOd7oRFoKi90eop34sQcqyDD9YMbhnq9kZqxHt0mbT65132rTUScc0Hv-T1RmFCbtFPZPRYnNFtCqiNlWuB3hqN_hRvxsRXvyqbFuZdkWkkoYBwYrq</string>
     <string name="permissions_denied">Gagal</string>
     <string name="info">Info</string>
     <string name="dismiss">Dismiss</string>
     <string name="change_style_maps">Title</string>
-    <string name="estimasi_biyaya">ESTIMASI BIYAYA</string>
+    <string name="estimasi_biyaya">ESTIMASI BIAYA</string>
     <string name="masukkan_jumlah">Masukkan Jumlah</string>
     <string name="lokasi">lokasi</string>
     <string name="masukkan_data_pesan">MASUKKAN DATA PESAN</string>

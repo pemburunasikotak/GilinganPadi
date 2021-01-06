@@ -11,11 +11,7 @@
         android:id="@+id/page_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigationView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        tools:ignore="UnknownIdInLayout">
-
+        android:layout_above="@+id/button_nav_pemilik">
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,7 +22,4 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         app:menu="@menu/navigation" />
-
-
-
 </RelativeLayout>

@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "437009375783-us5na85qrribp79cupmg557mci22loju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mygilingan",
+            "certificate_hash": "12897d8c8686a24edacf1998ed5053c8788aaa40"
+          }
+        },
+        {
           "client_id": "437009375783-q5jk3v34v5nurk7mgokel32dglf8rn4u.apps.googleusercontent.com",
           "client_type": 3
         }

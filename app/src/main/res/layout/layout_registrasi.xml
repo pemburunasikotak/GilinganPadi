@@ -12,97 +12,101 @@
         android:src="@drawable/logolingkaran"
         android:layout_marginTop="80dp"
         android:contentDescription="TODO">
-
     </ImageView>
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/size_20dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginRight="@dimen/size_20dp"
-        android:layout_marginLeft="@dimen/size_20dp"
-        android:background="@drawable/ic_form"
         android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/edit_text_name_registrasi"
-            android:layout_marginLeft="@dimen/size_20dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textColorHint="@android:color/holo_blue_light"
-            android:textColor="@android:color/black"
-            android:hint="Nama"
-            android:inputType="text"
-            android:background="@null"
-            android:layout_height="@dimen/size_40dp">
-        </EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/size_20dp"
-        android:layout_width="match_parent"
-        android:layout_marginRight="@dimen/size_20dp"
-        android:layout_marginLeft="@dimen/size_20dp"
-        android:background="@drawable/ic_form"
-        android:layout_height="wrap_content">
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/size_20dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:background="@drawable/ic_form"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edit_text_email_registrasi"
-            android:layout_marginLeft="@dimen/size_20dp"
-            android:layout_width="match_parent"
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:background="@null"
-            android:textColorHint="@android:color/holo_blue_light"
-            android:textColor="@android:color/black"
-            android:layout_height="@dimen/size_40dp">
-        </EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/size_20dp"
-        android:layout_width="match_parent"
-        android:layout_marginRight="@dimen/size_20dp"
-        android:layout_marginLeft="@dimen/size_20dp"
-        android:background="@drawable/ic_form"
-        android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edit_text_name_registrasi"
+                    android:layout_marginLeft="@dimen/size_20dp"
+                    android:layout_width="match_parent"
+                    android:textColorHint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/black"
+                    android:hint="Nama"
+                    android:inputType="text"
+                    android:background="@null"
+                    android:layout_height="@dimen/size_40dp">
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/size_20dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:background="@drawable/ic_form"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edit_text_password_registrasi"
-            android:layout_marginLeft="@dimen/size_20dp"
-            android:layout_width="match_parent"
-            android:textColorHint="@android:color/holo_blue_light"
-            android:textColor="@android:color/black"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:background="@null"
-            android:layout_height="@dimen/size_40dp">
-        </EditText>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="@dimen/size_20dp"
-        android:layout_width="match_parent"
-        android:layout_marginRight="@dimen/size_20dp"
-        android:layout_marginLeft="@dimen/size_20dp"
-        android:background="@drawable/ic_form"
-        android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edit_text_email_registrasi"
+                    android:layout_marginLeft="@dimen/size_20dp"
+                    android:layout_width="match_parent"
+                    android:hint="email"
+                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:textColorHint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/black"
+                    android:layout_height="@dimen/size_40dp">
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/size_20dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:background="@drawable/ic_form"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edit_text_no_telp_registrasi"
-            android:layout_marginLeft="@dimen/size_20dp"
-            android:layout_width="match_parent"
-            android:hint="no Telp"
-            android:background="@null"
-            android:textColorHint="@android:color/holo_blue_light"
-            android:textColor="@android:color/black"
-            android:layout_height="@dimen/size_40dp">
-        </EditText>
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/edit_text_password_registrasi"
+                    android:layout_marginLeft="@dimen/size_20dp"
+                    android:layout_width="match_parent"
+                    android:textColorHint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/black"
+                    android:hint="password"
+                    android:inputType="textPassword"
+                    android:background="@null"
+                    android:layout_height="@dimen/size_40dp">
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/size_20dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:background="@drawable/ic_form"
+                android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btn_daftar_layout_registrasi"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/ic_daftar">
-    </Button>
-
-
+                <EditText
+                    android:id="@+id/edit_text_no_telp_registrasi"
+                    android:layout_marginLeft="@dimen/size_20dp"
+                    android:layout_width="match_parent"
+                    android:hint="no Telp"
+                    android:background="@null"
+                    android:textColorHint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/black"
+                    android:layout_height="@dimen/size_40dp">
+                </EditText>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_daftar_layout_registrasi"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/ic_daftar">
+            </Button>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
